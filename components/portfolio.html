@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React - Tutorial</title>
+    <script src="./react/build/react.js"></script>
+    <script src="./react/build/react-dom.js"></script>
+    <script src="./react/browser.min.js"></script>
+    <link rel="stylesheet" href="./fontawesome-free-6.1.1-web/css/all.css">
+    <script src="./fontawesome-free-6.1.1-web/js/all.js"></script>
+    <style>
+        html{
+            background-color: rgb(60, 60, 60);
+        }
+        body{
+            background-color: rgb(36, 36, 36);
+            font-family: 'Inter';
+            color: white;
+            width: 400px;
+            box-shadow: 0 0 1px 2px rgb(200, 200, 200);
+            border-radius: 1em;
+            margin: .5% auto;
+            text-align: center;
+            padding: 1% 1% 0 1%;
+        }
+        #root{
+            background-color: rgb(18, 18, 19);
+            border-radius: 1em;
+        }
+        .img-fluid{
+            clip-path: circle(30% at 50% 50%);
+            background-color: white;
+        }
+        .logo{
+            width: 50%;
+        }
+        
+        p{
+            margin: 0.5em;
+        }
+        .btn{
+            display: flex;
+            justify-content: space-evenly;
+        }
+        button{
+            padding: 10px;
+            width: 100px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: medium;
+            font-weight: bold;
+        }
+        button:last-child{
+            background-color: green;
+            color: white;
+        }
+        main{
+            padding: 3%;
+            text-align: initial;
+        }
+        footer{
+            background-color: rgb(10, 10, 10);
+            font-size: xx-large;
+        }
+        footer ul{
+            display: flex;
+            justify-content: space-evenly;
+            list-style-type: none;
+        }
+        footer ul li{
+            cursor: pointer;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        
+        class App extends React.Component{
+            render() {
+                return <div>
+                    <Header/>
+                    <Main/>
+                    <Footer/>
+                </div>
+            }
+        }
+        
+        function Header(){
+            return (
+            <header>
+                <div className="img-fluid">
+                    <img src="profile.jpg" alt="profile" className="logo" />
+                </div>
+                <h1>Asad Zulfiqar</h1>
+                <p>Full Stack Developer</p>
+                <p>asadhusn007@gmail.com</p>
+                <div className="btn">
+                    <button>Email</button>
+                    <button>LinkedIn</button>
+                </div>
+            </header>
+            )
+        }
+        
+        
+        function Main(){
+            return (
+            <main>
+                <h3>About</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem fugiat asperiores at sit reprehenderit iste consequatur est suscipit minus under</p>
+                <h3>Interest</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem fugiat asperiores at sit reprehenderit iste consequatur est suscipit minus under</p>
+            </main>
+            )
+        }
+        
+        function Footer(){
+            return (
+            <footer>
+                <ul>
+                    <li>
+                        <i className="fa-brands fa-twitter-square"></i>
+                    </li>
+                    <li>
+                        
+                        <i className="fa-brands fa-facebook"></i>
+                    </li>
+                    <li>
+                        <i className="fa-brands fa-instagram"></i>
+                    </li>
+                    <li>
+                        <i className="fa-brands fa-github"></i>
+                    </li>
+                </ul>
+            </footer>
+            )
+        }
+        
+        ReactDOM.render(<App />, document.getElementById('root'));
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./react/react.development.js"></script>
+    <script src="./react/react-dom.development.js"></script>
+    <script src="./react/babel.js"></script>
+    <title>Registration Form</title>
+    <style>
+        form{
+            font-family: 'Gill Sans MT';
+            margin: 5% auto;
+            width: 400px;
+            font-size: large;
+            box-shadow: 0 1px 2px;
+            padding: 1% 2% 2%;
+        }
+        form input, select{
+            display: block;
+            font-size: inherit;
+            width: 100%;
+            box-sizing: border-box;
+            margin: 1% 0 2%;
+        }
+        form button{
+            font-size: inherit;
+            cursor: pointer;
+            margin: auto;
+            display: block;
+        }
+        form button[type='submit']{
+            width: 100%;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        const root = ReactDOM.createRoot(document.getElementById('root'))
+        function App(){
+            const [formData, setFormData] = React.useState({
+                name: '',
+                email: '',
+                city: '',
+                phone: '',
+                date: '',
+                job: ''
+            })
+            const [page, setPage] = React.useState(true)
+
+            function handleClick(e){
+                setFormData({...formData,
+                    [e.target.name] : e.target.value
+                })
+            }
+
+            return (
+            <form onSubmit={(e)=> {
+                e.preventDefault()
+                console.log(formData)
+            }
+            }>
+                <h1>Register</h1>
+                <div id="content">
+                    {page? <SectionOne handleClick={handleClick}/>:<SectionTwo handleClick={handleClick}/>}
+                    <br/>
+                    <button type="button" onClick={()=>setPage(!page)}>{page? 'Next':'Previous'}</button>
+                    <br/>
+                    {!page && <button type='submit'>Submit</button>}
+                </div>
+                <hr/>
+                <div>
+                    Name: {formData.name} <br/>
+                    Email: {formData.email} <br/>
+                    City: {formData.city} <br/>
+                    Phone: {formData.phone} <br/>
+                    Date of Birth: {formData.date} <br/>
+                    Profession: {formData.job} <br/>
+                </div>
+            </form>
+            )
+        }
+        
+        function SectionOne(props){
+            return (
+            <section className="tab">
+                
+                <label htmlFor="name">Name: </label>
+                <input type="text" name="name" id="name" placeholder="Name" onChange={props.handleClick}/>   
+                
+                <label htmlFor="email">Email:</label>
+                <input type="email" name="email" id="email" placeholder="Email" onChange={props.handleClick}/>
+                
+                <label htmlFor="city">City:</label>
+                <input type="text" name="city" id="city" placeholder="City" onChange={props.handleClick}/>
+                
+                <label htmlFor="phone">Phone:</label>
+                <input type="tel" name="phone" id="phone" placeholder="Phone" onChange={props.handleClick}/>
+                
+            </section>
+            )
+        }
+        function SectionTwo(props){
+            return (
+            <section className="tab">
+                <label htmlFor="date">Date of Birth:</label>
+                <input type="date" name="date" id="date" onChange={props.handleClick}/>
+                
+                <label htmlFor="job">Profession:</label>
+                <select name="job" id="job" onChange={props.handleClick}>
+                    <option>--Select--</option>
+                    <option value="employed">Employed</option>
+                    <option value="unemployed">Unmployed</option>
+                    <option value="student">Student</option>
+                </select>
+            </section>
+            )
+        }
+        root.render(<App/>)
+    </script>
+    
+</body>
+</html>
